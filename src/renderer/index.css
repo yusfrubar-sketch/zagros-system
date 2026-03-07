@@ -1,0 +1,35 @@
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  /* Zagros System – logo colors */
+  --zagros-blue: #1d4ed8;
+  --zagros-blue-hover: #1e40af;
+  --zagros-orange: #f97316;
+  --zagros-orange-hover: #ea580c;
+  --zagros-text: #1f2937;
+  --zagros-text-muted: #6b7280;
+  --bg: #ffffff;
+  --surface: #ffffff;
+  --border: #e5e7eb;
+  --accent-soft: #dbeafe;
+  --shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg);
+  color: var(--zagros-text);
+}
+
+#root {
+  min-height: 100vh;
+}
+
+input::placeholder {
+  color: var(--zagros-text-muted);
+  opacity: 0.8;
+}
