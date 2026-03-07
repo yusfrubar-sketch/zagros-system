@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zagros License Admin</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Zagros License Admin</h1>
+      <p class="subtitle">Generate passwords and view users. Connect this to your domain later.</p>
+    </header>
+
+    <section class="card">
+      <h2>Generate license password</h2>
+      <p class="hint">Creates a new password. Give it to the customer after they pay. They enter it in the app (must be online).</p>
+      <button type="button" id="btnGenerate" class="btn btnPrimary">Generate new password</button>
+      <div id="generatedResult" class="result-box hidden">
+        <label>Password (copy and send to customer):</label>
+        <div class="row">
+          <input type="text" id="generatedKey" readonly />
+          <button type="button" id="btnCopyKey" class="btn">Copy</button>
+        </div>
+      </div>
+      <p id="generateError" class="error hidden"></p>
+    </section>
+
+    <section class="card">
+      <h2>Trials (7-day)</h2>
+      <p class="hint">Machines that started a trial. When trial ends they must buy a license.</p>
+      <button type="button" id="btnRefreshTrials" class="btn">Refresh</button>
+      <div id="trialsTableWrap" class="table-wrap">
+        <table id="trialsTable">
+          <thead>
+            <tr><th>Machine ID (user)</th><th>Trial ends at</th></tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <p id="trialsError" class="error hidden"></p>
+    </section>
+
+    <section class="card">
+      <h2>Licensed users</h2>
+      <p class="hint">Machines that activated a license. One password = one machine.</p>
+      <button type="button" id="btnRefreshLicenses" class="btn">Refresh</button>
+      <div id="licensesTableWrap" class="table-wrap">
+        <table id="licensesTable">
+          <thead>
+            <tr><th>Machine ID (user)</th><th>Activated at</th></tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <p id="licensesError" class="error hidden"></p>
+    </section>
+  </div>
+
+  <script src="config.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

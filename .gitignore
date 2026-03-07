@@ -4,3 +4,9 @@ out/
 release/
 *.log
 .DS_Store
+
+# Supabase / secrets - never commit real credentials
+.env
+.env.local
+.env.*.local
+admin-website/config.js
