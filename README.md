@@ -6,23 +6,47 @@ Desktop application for **Windows 10 and Windows 11** only.
 
 ## Sync between Mac and Windows (Git)
 
-**Mac side (already done):** Repo is initialized and first commit is created.
+Repo: **https://github.com/yusfrubar-sketch/zagros-system**
 
-**Next — push to GitHub from Mac:**
+### On your Mac (when you change code)
 
-1. Create a new repository on [GitHub](https://github.com/new) (e.g. name: `zagros-system`). Do **not** add a README or .gitignore (project already has them).
-2. In Terminal on your Mac, from this project folder run:
+1. Save your work, then in Terminal from the project folder:
    ```bash
-   cd "/Users/macbookshop/Desktop/system managment"
-   git remote add origin https://github.com/YOUR_USERNAME/zagros-system.git
-   git branch -M main
-   git push -u origin main
+   cd "/Users/macbookshop/Desktop/system managment/zagros-system"
+   git add .
+   git commit -m "Your short message"
+   git push origin main
    ```
-   Replace `YOUR_USERNAME` and `zagros-system` with your GitHub username and repo name.
+2. That’s it — your changes are on GitHub.
 
-**On Windows:** Clone the repo, then open the folder in Cursor and run `npm install` and `npm run dev`.
+### On your Windows PC (get latest code)
 
-**After that:** Use `git add .` → `git commit -m "message"` → `git push` on the machine you edited on; use `git pull` on the other before working.
+1. **First time only** — clone the repo:
+   ```bash
+   git clone https://github.com/yusfrubar-sketch/zagros-system.git
+   cd zagros-system
+   npm install
+   ```
+2. **Every time before you work** — pull the latest:
+   ```bash
+   cd zagros-system
+   git pull origin main
+   ```
+   If you added new dependencies on Mac, run `npm install` again after pull.
+
+3. **Create the Windows installer** (on Windows):
+   ```bash
+   npm run dist
+   ```
+   The `.exe` will be in the **`release/`** folder.
+
+4. **Run the app (dev):** `npm run dev`  
+   **Run the app (built):** `npm run build && npm start`
+
+### Summary
+
+- **Mac:** you edit and push (`git add` → `git commit` → `git push`).
+- **Windows:** you pull (`git pull`), then build/run or create the installer.
 
 ---
 
