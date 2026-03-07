@@ -2,6 +2,30 @@
 
 Desktop application for **Windows 10 and Windows 11** only.
 
+---
+
+## Sync between Mac and Windows (Git)
+
+**Mac side (already done):** Repo is initialized and first commit is created.
+
+**Next — push to GitHub from Mac:**
+
+1. Create a new repository on [GitHub](https://github.com/new) (e.g. name: `zagros-system`). Do **not** add a README or .gitignore (project already has them).
+2. In Terminal on your Mac, from this project folder run:
+   ```bash
+   cd "/Users/macbookshop/Desktop/system managment"
+   git remote add origin https://github.com/YOUR_USERNAME/zagros-system.git
+   git branch -M main
+   git push -u origin main
+   ```
+   Replace `YOUR_USERNAME` and `zagros-system` with your GitHub username and repo name.
+
+**On Windows:** Clone the repo, then open the folder in Cursor and run `npm install` and `npm run dev`.
+
+**After that:** Use `git add .` → `git commit -m "message"` → `git push` on the machine you edited on; use `git pull` on the other before working.
+
+---
+
 ## Target
 - **OS:** Windows 10, Windows 11
 - **Architecture:** 64-bit (optional 32-bit if needed later)
