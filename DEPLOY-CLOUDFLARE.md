@@ -79,8 +79,13 @@ If you want the default logo on the home screen to show:
 1. **Build command** must be exactly: `npm run build:web` (with a **colon**, not a space). Not `npm run build` and not `npm run build web`.
 2. **Build output directory** must be: `dist`.
 3. **Framework preset**: choose **None**. If you picked "Vite" or "React", Cloudflare may override the build command; edit the project → **Settings** → **Builds & deployments** and set the command and output directory as above.
-4. **Full error**: In the build log, scroll to the bottom. The real error is usually after "Building application". Use **Download log** and look for lines with `Error` or `failed`.
-5. **Node version**: The repo includes a `.nvmrc` file so Cloudflare uses Node 20. Commit and push it if the build still fails on an older Node.
+4. **"npm ci" failed at "Installing tools and dependencies"**: Cloudflare runs `npm ci` by default. If that step fails:
+   - Go to **Settings** → **Environment variables** (Production).
+   - Add: name **`SKIP_DEPENDENCY_INSTALL`**, value **`1`**.
+   - In **Builds & deployments**, set **Build command** to: **`npm install && npm run build:web`**.
+   - Save and **Retry deployment**.
+5. **Full error**: In the build log, scroll to the bottom. The real error is usually after "Building application". Use **Download log** and look for lines with `Error` or `failed`.
+6. **Node version**: The repo includes a `.nvmrc` file so Cloudflare uses Node 20. Commit and push it if the build still fails on an older Node.
 
 ---
 
