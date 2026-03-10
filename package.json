@@ -7,6 +7,7 @@
   "scripts": {
     "dev": "npm run build:main && concurrently -k \"vite\" \"wait-on http://localhost:5173 && cross-env VITE_DEV_SERVER_URL=http://localhost:5173 electron .\"",
     "build": "npm run build:main && vite build",
+    "build:web": "vite build",
     "build:main": "tsc -p tsconfig.main.json && tsc -p tsconfig.preload.json",
     "dist": "npm run build && electron-builder --win",
     "dist:dir": "npm run build && electron-builder --win --dir",
@@ -33,6 +34,7 @@
     "directories": {
       "output": "release"
     },
+    "asar": true,
     "win": {
       "target": [
         {
@@ -41,7 +43,8 @@
             "x64"
           ]
         }
-      ]
+      ],
+      "compression": "maximum"
     },
     "nsis": {
       "oneClick": false,
@@ -68,6 +71,7 @@
   "dependencies": {
     "@supabase/supabase-js": "^2.98.0",
     "dotenv": "^17.3.1",
+    "jsbarcode": "^3.12.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   }
