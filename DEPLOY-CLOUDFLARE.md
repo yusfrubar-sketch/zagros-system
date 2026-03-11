@@ -1,5 +1,7 @@
 # Deploy Zagros System to Cloudflare Pages (zagrosexpress.org)
 
+> **If the deploy step fails with "dist: not found"**: In Cloudflare **Settings → Build**, set **Deploy command** to **`npx wrangler deploy`** (or **`npm run deploy:cf`**). Do **not** put `dist` in the Deploy command field — `dist` is the folder name; the deploy command must be the actual command that uploads your site.
+
 Follow these steps to put your app online so people can open **https://zagrosexpress.org** and use it.
 
 ---
@@ -49,7 +51,7 @@ If **zagrosexpress.org** is already in Cloudflare, skip to step 2.
    | Production branch   | `main`          |
    | Build command       | `npm run build:web` (must have the **colon** in `build:web`) |
    | Build output directory | `dist`     |
-   | Deploy command (if required) | `npx wrangler deploy` |
+   | **Deploy command** (required in Workers UI) | **`npx wrangler deploy`** or **`npm run deploy:cf`** — never use `dist` here |
 
 5. Click **Save and Deploy**. Wait for the first build to finish.
 6. Your app will be live at **https://your-project.pages.dev** (or similar). Open it to confirm it works.
