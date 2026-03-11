@@ -1,14 +1,28 @@
 /**
- * Minimal Worker that serves static assets from the ASSETS binding.
- * Ensures we always return a Response (fixes "Returned response is null" on custom domains).
+ * Worker that serves static assets. Always returns a Response (never null).
  */
 export default {
   async fetch(request, env) {
+    if (!env.ASSETS) {
+      return new Response('Assets not configured', { status: 503 });
+    }
     try {
-      const response = await env.ASSETS.fetch(request);
-      return response ?? new Response('Not Found', { status: 404 });
+      let response = await env.ASSETS.fetch(request);
+      if (!response || response.status === 404) {
+        const url = new URL(request.url);
+        if (url.pathname === '/' || !url.pathname.includes('.')) {
+          const indexUrl = new URL(request.url);
+          indexUrl.pathname = '/index.html';
+          response = await env.ASSETS.fetch(new Request(indexUrl, request));
+        }
+      }
+      if (response && response.status !== 404) return response;
+      return new Response('Not Found', { status: 404, headers: { 'Content-Type': 'text/plain' } });
     } catch (e) {
-      return new Response('Internal Error', { status: 500 });
+      return new Response('Error: ' + (e && e.message ? e.message : 'Unknown'), {
+        status: 500,
+        headers: { 'Content-Type': 'text/plain' },
+      });
     }
   },
 };
