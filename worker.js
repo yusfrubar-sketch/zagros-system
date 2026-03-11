@@ -16,7 +16,7 @@ export default {
           response = await env.ASSETS.fetch(new Request(indexUrl, request));
         }
       }
-      if (response && response.status !== 404) return response;
+      if (response && response instanceof Response && response.status !== 404) return response;
       return new Response('Not Found', { status: 404, headers: { 'Content-Type': 'text/plain' } });
     } catch (e) {
       return new Response('Error: ' + (e && e.message ? e.message : 'Unknown'), {
