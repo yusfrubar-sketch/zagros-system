@@ -49,6 +49,7 @@ If **zagrosexpress.org** is already in Cloudflare, skip to step 2.
    | Production branch   | `main`          |
    | Build command       | `npm run build:web` (must have the **colon** in `build:web`) |
    | Build output directory | `dist`     |
+   | Deploy command (if required) | `npx wrangler deploy` |
 
 5. Click **Save and Deploy**. Wait for the first build to finish.
 6. Your app will be live at **https://your-project.pages.dev** (or similar). Open it to confirm it works.
